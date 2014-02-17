@@ -1,0 +1,30 @@
+{
+  "name": "norse",
+  "version": "0.0.0",
+  "description": "convert morse to timing information",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "node test/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jarofghosts/norse.git"
+  },
+  "keywords": [
+    "morse",
+    "timing",
+    "stream"
+  ],
+  "author": "jesse keane",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jarofghosts/norse/issues"
+  },
+  "homepage": "https://github.com/jarofghosts/norse",
+  "dependencies": {
+    "through": "~2.3.4"
+  }
+}
