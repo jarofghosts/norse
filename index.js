@@ -15,9 +15,9 @@ function norse(_time_unit) {
     , INTER_WORD = time_unit * 7
 
   var conversion = {
-    '.': DOT,
-    '-': DASH,
-    '_': DASH
+      '.': DOT
+    , '-': DASH
+    , '_': DASH
   }
 
   return norse_stream
@@ -40,8 +40,8 @@ function norse(_time_unit) {
       var bits = letter.split('')
         , bit
 
-      for (var i = 0, l = bits.length; i < l; ++i) {
-        if (i) norse_stream.queue([buf, INTER_DOTDASH])
+      for(var i = 0, l = bits.length; i < l; ++i) {
+        if(i) norse_stream.queue([buf, INTER_DOTDASH])
 
         bit = bits[i]
         buf = conversion[bit]
