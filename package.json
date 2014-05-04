@@ -1,6 +1,6 @@
 {
   "name": "norse",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "convert morse to timing information",
   "main": "index.js",
   "directories": {
