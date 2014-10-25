@@ -2,17 +2,17 @@ var through = require('through')
 
 module.exports = norse
 
-function norse(_time_unit) {
-  var time_unit = +(_time_unit || 500)
+function norse(_timeUnit) {
+  var timeUnit = +(_timeUnit || 500)
 
-  var norse_stream = through(to_timing)
+  var norseStream = through(to_timing)
 
-  var DASH = time_unit * 3
-    , DOT = time_unit
+  var DASH = timeUnit * 3
+    , DOT = timeUnit
 
-  var INTER_DOTDASH = time_unit
-    , INTER_LETTER = time_unit * 3
-    , INTER_WORD = time_unit * 7
+  var INTER_DOTDASH = timeUnit
+    , INTER_LETTER = timeUnit * 3
+    , INTER_WORD = timeUnit * 7
 
   var conversion = {
       '.': DOT
@@ -20,7 +20,7 @@ function norse(_time_unit) {
     , '_': DASH
   }
 
-  return norse_stream
+  return norseStream
 
   function to_timing(data) {
     var word = data.toString()
@@ -30,18 +30,18 @@ function norse(_time_unit) {
       , bit
 
     for(var i = 0, l = letters.length; i < l; ++i) {
-      if(i) norse_stream.queue([buf, INTER_LETTER])
-      translate_letters(letters[i])
+      if(i) norseStream.queue([buf, INTER_LETTER])
+      translateLetters(letters[i])
     }
 
-    norse_stream.queue([buf, INTER_WORD])
+    norseStream.queue([buf, INTER_WORD])
 
-    function translate_letters(letter) {
+    function translateLetters(letter) {
       var bits = letter.split('')
         , bit
 
       for(var i = 0, l = bits.length; i < l; ++i) {
-        if(i) norse_stream.queue([buf, INTER_DOTDASH])
+        if(i) norseStream.queue([buf, INTER_DOTDASH])
 
         bit = bits[i]
         buf = conversion[bit]
