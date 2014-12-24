@@ -5,7 +5,7 @@ module.exports = norse
 function norse(_timeUnit) {
   var timeUnit = +(_timeUnit || 500)
 
-  var norseStream = through(to_timing)
+  var norseStream = through(toTiming)
 
   var DASH = timeUnit * 3
     , DOT = timeUnit
@@ -22,7 +22,7 @@ function norse(_timeUnit) {
 
   return norseStream
 
-  function to_timing(data) {
+  function toTiming(data) {
     var word = data.toString()
 
     var letters = word.split(' ')
