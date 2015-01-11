@@ -25,9 +25,9 @@
   },
   "homepage": "https://github.com/jarofghosts/norse",
   "dependencies": {
-    "through": "2.3.4"
+    "through": "^2.3.4"
   },
   "devDependencies": {
-    "tape": "2.12.3"
+    "tape": "^2.12.3"
   }
 }

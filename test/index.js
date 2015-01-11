@@ -1,23 +1,14 @@
 var test = require('tape')
 
-var stream = require('stream')
-
 var norse = require('../')
 
 test('properly converts morse to timings', function(t) {
   t.plan(8)
 
-  var ws = stream.Writable({objectMode: true})
-    , rs = stream.Readable()
-
+  var norseStream = norse()
   var count = 1
 
-  rs._read = function() {
-    rs.push('... --- ...')
-    rs.push(null)
-  }
-
-  ws._write = function (chunk, enc, next) {
+  norseStream.on('data', function(chunk) {
     if(count < 3 || count === 7 || count === 8) {
       t.deepEqual(chunk, [500, 500])
     } else if(count === 3) {
@@ -27,30 +18,22 @@ test('properly converts morse to timings', function(t) {
     } else if(count === 6) {
       t.deepEqual(chunk, [1500, 1500])
     } else if(count === 7) {
-      t.deepEqual([500, 3500])
+      t.deepEqual(chunk, [500, 3500])
     }
 
     count++
-    next()
-  }
+  })
 
-  rs.pipe(norse()).pipe(ws)
+  norseStream.write('... --- ...')
 })
 
 test('configurable time unit', function(t) {
   t.plan(8)
 
-  var ws = stream.Writable({objectMode: true})
-    , rs = stream.Readable()
-
+  var norseStream = norse(1)
   var count = 1
 
-  rs._read = function() {
-    rs.push('... --- ...')
-    rs.push(null)
-  }
-
-  ws._write = function (chunk, enc, next) {
+  norseStream.on('data', function(chunk) {
     if(count < 3 || count === 7 || count === 8) {
       t.deepEqual(chunk, [1, 1])
     } else if(count === 3) {
@@ -60,12 +43,11 @@ test('configurable time unit', function(t) {
     } else if(count === 6) {
       t.deepEqual(chunk, [3, 3])
     } else if(count === 7) {
-      t.deepEqual([1, 7])
+      t.deepEqual(chunk, [1, 7])
     }
 
     count++
-    next()
-  }
+  })
 
-  rs.pipe(norse(1)).pipe(ws)
+  norseStream.write('... --- ...')
 })

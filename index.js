@@ -27,7 +27,6 @@ function norse(_timeUnit) {
 
     var letters = word.split(' ')
       , buf
-      , bit
 
     for(var i = 0, l = letters.length; i < l; ++i) {
       if(i) norseStream.queue([buf, INTER_LETTER])

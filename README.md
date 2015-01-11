@@ -1,17 +1,19 @@
 norse
-====
+=====
 
-[![Build Status](https://travis-ci.org/jarofghosts/norse.png?branch=master)](https://travis-ci.org/jarofghosts/norse)
+[![Build Status](http://img.shields.io/travis/jarofghosts/norse/master.svg?style=flat)](https://travis-ci.org/jarofghosts/norse)
+[![npm install](http://img.shields.io/npm/dm/norse.svg?style=flat)](https://www.npmjs.org/package/norse)
 
 convert morse code characters into timings
 
 ## example
 
 ```js
-var norse = require('norse'),
-    morse = require('morse-stream'),
-    flashlight = require('fake-light-flashing-module'),
-    fs = require('fs')
+var fs = require('fs')
+
+var flashlight = require('fake-light-flashing-module')
+  , morse = require('morse-stream')
+  , norse = require('norse')
 
 fs.createReadStream('goosebumps.txt')
   .pipe(morse())
@@ -22,15 +24,16 @@ fs.createReadStream('goosebumps.txt')
 ## another example
 
 ```js
-var norse = require('norse'),
-    concat = require('concat-stream'),
-    fs = require('fs')
+var fs = require('fs')
+
+var concat = require('concat-stream')
+  , norse = require('norse')
 
 fs.createReadStream('sos-in-morse-code.txt')
   .pipe(norse(1))
-  .pipe(concat(display_timings))
+  .pipe(concat(displayTimings))
 
-function display_timings(timings) {
+function displayTimings(timings) {
   console.log(timings)
   // [1, 1, 1, 1, 1, 3, 3, 1, 3, 1, 3, 3, 1, 1, 1, 1, 1, 7]
 }
@@ -38,7 +41,7 @@ function display_timings(timings) {
 
 ## notes
 
-emits arrays for timing as `[time_on, time_off]`
+emits arrays for timing as `[timeOn, timeOff]`
 
 accepts a stream of words, with letters separated by space. dots should be
 represented with `'.'` and dashes by either `'-'` or `'_'`. For example, SOS
